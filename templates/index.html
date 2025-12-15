@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python DataSource Demo</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Python DataSource Demo</h1>
+            <p class="subtitle">Demonstratie van database en CSV data-toegang</p>
+        </header>
+
+        <main>
+            <section class="controls">
+                <h2>Selecteer Databron</h2>
+                <div class="source-selector">
+                    <button id="btn-database" class="source-btn active" data-source="database">
+                        Database (SQLite)
+                    </button>
+                    <button id="btn-csv" class="source-btn" data-source="csv">
+                        CSV Bestand
+                    </button>
+                </div>
+                <button id="btn-load" class="load-btn">Laad Producten</button>
+            </section>
+
+            <section class="info">
+                <div id="info-message" class="info-box">
+                    Kies een databron en klik op "Laad Producten" om te beginnen.
+                </div>
+            </section>
+
+            <section class="products">
+                <h2>Producten</h2>
+                <div id="products-container" class="products-grid">
+                    <!-- Producten worden hier geladen via JavaScript -->
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Demo applicatie voor educatieve doeleinden</p>
+            <p>Illustreert SOLID, GRASP, KISS en DRY principes in Python</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
