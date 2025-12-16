@@ -91,11 +91,15 @@ class Product:
             str: Pad naar de afbeelding of placeholder
         """
         if self.image_path:
-            full_path = os.path.join('static', 'images', self.image_path)
-            if os.path.exists(full_path):
-                return self.image_path
+            # Check common image extensions
+            for ext in ['', '.png', '.jpg', '.jpeg', '.svg']:
+                base_name = self.image_path.replace('.png', '').replace('.jpg', '').replace('.jpeg', '').replace('.svg', '')
+                full_path = os.path.join('static', 'images', base_name + ext)
+                if os.path.exists(full_path):
+                    return base_name + ext
         
-        return 'placeholder.png'
+        # Fallback to SVG placeholder
+        return 'placeholder.svg'
     
     def to_dict(self) -> Dict[str, Any]:
         """

@@ -90,9 +90,9 @@ function renderProducts(products) {
             <div class="product-id">ID: ${product.id}</div>
             <img 
                 src="/static/images/${product.image}" 
-                alt="${product.name}"
+                alt="${escapeHtml(product.name)}"
                 class="product-image"
-                onerror="this.src='/static/images/placeholder.png'"
+                onerror="this.onerror=null; this.src='/static/images/placeholder.svg';"
             >
             <h3 class="product-name">${escapeHtml(product.name)}</h3>
             <p class="product-description">${escapeHtml(product.description)}</p>

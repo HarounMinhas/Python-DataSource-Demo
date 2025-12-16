@@ -1,0 +1,9 @@
+<svg width="400" height="400" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="400" fill="#f0f0f0"/>
+  <rect x="2" y="2" width="396" height="396" fill="none" stroke="#cccccc" stroke-width="3"/>
+  <line x1="50" y1="50" x2="350" y2="350" stroke="#999999" stroke-width="5"/>
+  <line x1="50" y1="350" x2="350" y2="50" stroke="#999999" stroke-width="5"/>
+  <rect x="125" y="95" width="150" height="150" fill="none" stroke="#999999" stroke-width="4"/>
+  <text x="200" y="290" font-family="Arial, sans-serif" font-size="24" fill="#666666" text-anchor="middle">Product Image</text>
+  <text x="200" y="325" font-family="Arial, sans-serif" font-size="24" fill="#666666" text-anchor="middle">Not Available</text>
+</svg>
