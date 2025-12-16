@@ -1,6 +1,6 @@
 id,name,description,price,stock,image_path
-1,Laptop Dell XPS 13,Krachtige ultrabook met 13 inch scherm, Intel i7 processor en 16GB RAM,1299.99,15,laptop.png
+1,Laptop Dell XPS 13,"Krachtige ultrabook met 13 inch scherm, Intel i7 processor en 16GB RAM",1299.99,15,laptop.png
 2,Draadloze Muis Logitech MX Master 3,Ergonomische draadloze muis met precisie tracking en oplaadbare batterij,99.99,42,mouse.png
 3,Mechanisch Toetsenbord Keychron K2,Compact 75% mechanisch toetsenbord met RGB verlichting en hot-swappable switches,89.99,28,keyboard.png
-4,Monitor LG UltraWide 34",Ultrawide QHD monitor (3440x1440) met IPS panel en 75Hz refresh rate,449.99,8,monitor.png
-5,USB-C Hub Anker 7-in-1,7-poorts USB-C hub met HDMI, USB 3.0, SD kaartlezer en 100W Power Delivery,54.99,67,usb-hub.png
+4,Monitor LG UltraWide 34 inch,"Ultrawide QHD monitor (3440x1440) met IPS panel en 75Hz refresh rate",449.99,8,monitor.png
+5,USB-C Hub Anker 7-in-1,"7-poorts USB-C hub met HDMI, USB 3.0, SD kaartlezer en 100W Power Delivery",54.99,67,usb-hub.png

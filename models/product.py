@@ -15,6 +15,7 @@ Verschil met traditionele OOP talen (zoals Java/C#):
 """
 
 import os
+from typing import Optional, Dict, Any
 
 
 class Product:
@@ -34,15 +35,51 @@ class Product:
         image_path (str): Pad naar productafbeelding
     """
     
-    def __init__(self, id, name, description, price, stock, image_path):
-        self.id = id
-        self.name = name
-        self.description = description
-        self.price = price
-        self.stock = stock
-        self.image_path = image_path
+    def __init__(
+        self,
+        id: int,
+        name: str,
+        description: str,
+        price: float,
+        stock: int,
+        image_path: str
+    ) -> None:
+        """
+        Initialiseer een Product.
+        
+        Args:
+            id: Uniek product ID (moet positief zijn)
+            name: Productnaam (mag niet leeg zijn)
+            description: Productbeschrijving
+            price: Prijs in euro (mag niet negatief zijn)
+            stock: Voorraad aantal (mag niet negatief zijn)
+            image_path: Pad naar productafbeelding
+        
+        Raises:
+            ValueError: Bij ongeldige input waardes
+        """
+        # Validatie
+        if not isinstance(id, int) or id <= 0:
+            raise ValueError(f"Product ID moet een positief getal zijn, kreeg: {id}")
+        
+        if not isinstance(name, str) or not name.strip():
+            raise ValueError("Product naam mag niet leeg zijn")
+        
+        if not isinstance(price, (int, float)) or price < 0:
+            raise ValueError(f"Prijs mag niet negatief zijn, kreeg: {price}")
+        
+        if not isinstance(stock, int) or stock < 0:
+            raise ValueError(f"Voorraad mag niet negatief zijn, kreeg: {stock}")
+        
+        # Assignments
+        self.id: int = id
+        self.name: str = name.strip()
+        self.description: str = description.strip() if description else ''
+        self.price: float = float(price)
+        self.stock: int = stock
+        self.image_path: str = image_path.strip() if image_path else ''
     
-    def get_display_image(self):
+    def get_display_image(self) -> str:
         """
         Geeft het te tonen afbeeldingspad terug.
         
@@ -53,11 +90,14 @@ class Product:
         Returns:
             str: Pad naar de afbeelding of placeholder
         """
-        if self.image_path and os.path.exists(os.path.join('static/images', self.image_path)):
-            return self.image_path
+        if self.image_path:
+            full_path = os.path.join('static', 'images', self.image_path)
+            if os.path.exists(full_path):
+                return self.image_path
+        
         return 'placeholder.png'
     
-    def to_dict(self):
+    def to_dict(self) -> Dict[str, Any]:
         """
         Converteer het Product object naar een dictionary.
         
@@ -76,6 +116,39 @@ class Product:
             'image': self.get_display_image()
         }
     
-    def __repr__(self):
+    @property
+    def is_low_stock(self) -> bool:
+        """
+        Controleer of het product een lage voorraad heeft.
+        
+        Returns:
+            bool: True als voorraad minder dan 10 is
+        """
+        return self.stock < 10
+    
+    @property
+    def formatted_price(self) -> str:
+        """
+        Geeft de prijs terug in geformatteerde string.
+        
+        Returns:
+            str: Prijs met euro symbool
+        """
+        return f"€{self.price:.2f}"
+    
+    def __repr__(self) -> str:
         """String representatie voor debugging."""
-        return f"Product(id={self.id}, name='{self.name}', price={self.price})"
+        return (
+            f"Product(id={self.id}, name='{self.name}', "
+            f"price={self.price}, stock={self.stock})"
+        )
+    
+    def __eq__(self, other: object) -> bool:
+        """Vergelijk twee Product objecten op basis van ID."""
+        if not isinstance(other, Product):
+            return NotImplemented
+        return self.id == other.id
+    
+    def __hash__(self) -> int:
+        """Hash functie voor gebruik in sets en dictionaries."""
+        return hash(self.id)
